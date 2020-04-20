@@ -33,8 +33,11 @@ namespace Projeto_cnpj.Controllers
             return View();
         }
 
+        public ActionResult Adicionar() { 
        
-     
+
+            return View("Index");
+    } 
        
         public ActionResult busca(string cnpj)
         {
@@ -74,7 +77,7 @@ namespace Projeto_cnpj.Controllers
 
                     ViewBag.abertura = em.abertura;
 
-                    ViewBag.nome = em.nome;
+                    ViewBag.nome = em.fantasia;
 
                     ViewBag.cep = em.cep;
 
@@ -83,8 +86,10 @@ namespace Projeto_cnpj.Controllers
                     historico his = new historico();
                     his.cnpj = cnpj;
                     his.data_consulta = DateTime.Now.DayOfYear;
-                    his.nome = em.nome;
-                    //historicoesController.Adicionar(his);
+                    his.nome = em.fantasia;
+                    contexto con = new contexto();
+                    con.Historicos.Add(his);
+                    con.SaveChanges();
 
                     return View("Index");
                     

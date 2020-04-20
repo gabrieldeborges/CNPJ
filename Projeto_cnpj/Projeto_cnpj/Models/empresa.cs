@@ -10,7 +10,7 @@ namespace Projeto_cnpj.Models
 
         public IList<empresa> lista { get; set; }
         public int numConsulta { get; set; }
-        public String nome { get; set; }
+        public String fantasia { get; set; }
         public String pais_origem { get; set; }
         public String bairro { get; set; }
         public String situacao { get; set; }
