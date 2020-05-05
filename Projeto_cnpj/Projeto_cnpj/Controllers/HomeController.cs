@@ -11,7 +11,11 @@ using System.Web.Mvc;
 namespace Projeto_cnpj.Controllers
 {
     public class HomeController : Controller
-    {
+    {   //guarda a consulta nova
+      
+      
+    
+
         public ActionResult Index()
         {
             return View();
@@ -37,8 +41,36 @@ namespace Projeto_cnpj.Controllers
        
 
             return View("Index");
-    } 
-       
+    }
+
+
+
+        public ActionResult salva(String fantasia, String cnpj1)
+        {
+            
+             if (cnpj1 != "") { 
+                historico1 atualConsulta = new historico1();
+                atualConsulta.cnpj = cnpj1;
+                atualConsulta.data_consulta = DateTime.Now.ToString("dd/MM/yyyy");
+                atualConsulta.fantasia = fantasia;
+
+                contexto1 con = new contexto1();
+
+                con.H.Add(atualConsulta);
+                con.SaveChanges();
+
+                ViewData["verifica"] = 1;
+
+                return View("Index");
+             }
+             else
+             {
+                ViewData["verifica"] = 0;
+                return View("Index");
+             }
+         
+        }
+
         public ActionResult busca(string cnpj)
         {
             Console.WriteLine("Hello World!");
@@ -67,7 +99,7 @@ namespace Projeto_cnpj.Controllers
                     StreamReader reader = new StreamReader(streamDados);
                     String JsonCanovertido = reader.ReadToEnd();
                     empresa em = JsonConvert.DeserializeObject<empresa>(JsonCanovertido);
-
+                    ViewBag.cnpj = cnpj;
 
                     ViewBag.situacao = em.situacao;
 
@@ -82,15 +114,10 @@ namespace Projeto_cnpj.Controllers
                     ViewBag.cep = em.cep;
 
                     ViewBag.cidade = em.municipio;
+                    
 
-                    historico his = new historico();
-                    his.cnpj = cnpj;
-                    his.data_consulta = DateTime.Now.DayOfYear;
-                    his.nome = em.fantasia;
-                    contexto con = new contexto();
-                    con.Historicos.Add(his);
-                    con.SaveChanges();
-
+                    
+                    ViewBag.erro = "Não encontrado";
                     return View("Index");
                     
                

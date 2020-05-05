@@ -19,6 +19,6 @@ namespace Projeto_cnpj.Data
         {
         }
 
-        public System.Data.Entity.DbSet<Projeto_cnpj.Models.historico> historicoes { get; set; }
+        public System.Data.Entity.DbSet<Projeto_cnpj.Models.historico1> historicoes { get; set; }
     }
 }

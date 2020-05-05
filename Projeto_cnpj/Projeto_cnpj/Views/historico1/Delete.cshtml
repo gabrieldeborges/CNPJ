@@ -1,0 +1,48 @@
+﻿@model Projeto_cnpj.Models.historico1
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Exclusão</h2>
+
+<h3>Deseja excluir este item?</h3>
+<div>
+    <h4>historico1</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.data_consulta)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.data_consulta)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fantasia)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fantasia)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.cnpj)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cnpj)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Excluir" class="btn btn-default" /> |
+            @Html.ActionLink("Voltar para a lista", "Index")
+        </div>
+    }
+</div>

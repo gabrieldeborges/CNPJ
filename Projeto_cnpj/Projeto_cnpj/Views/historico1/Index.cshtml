@@ -1,0 +1,43 @@
+﻿@model IEnumerable<Projeto_cnpj.Models.historico1>
+
+@{
+    ViewBag.Title = "Historico";
+}
+
+<h2>Index</h2>
+
+<p>
+
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.data_consulta)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fantasia)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.cnpj)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.data_consulta)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.fantasia)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.cnpj)
+        </td>
+        <td>
+            @Html.ActionLink("Delete", "Delete", new { id=item.id })
+        </td>
+    </tr>
+}
+
+</table>
