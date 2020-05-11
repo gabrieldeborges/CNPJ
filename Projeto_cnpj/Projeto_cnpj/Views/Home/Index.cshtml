@@ -1,6 +1,5 @@
 ﻿@{
     ViewBag.Title = "Home Page";
-    Console.WriteLine("tesye");
 
 
 }
@@ -15,128 +14,126 @@
 
         }
 
+        function salvo() {
+            alert("CNPJ salvo!");
+        }
 
-    function naoEncontrado() {
-        if (@ViewData["verifica"]!= null) {
+        function errado() {
 
-            if (@ViewData["verifica"] == 1) {
-
-                alert("CNPJ salvo!");
-
-                @ViewData["verifica"] = null;
-                @ViewBag.fantasia = null;
-                @ViewBag.cnpj = "";
-            }
-            else {
-                alert("Favor realizar uma consulta antes de salvar!");
-
-
-                @ViewData["verifica"] = null;
-                @ViewBag.fantasia = null;
-                @ViewBag.cnpj = null;
-            }
-
-
-        } 
-    }
+            alert("Favor realizar uma consulta antes de salvar!");
+        }
+        
+        
     </script>
 
-<body class="center-form" onload="Salvar()">
-    <div class="jumbotron">
+<body class="center-form"/>
+<div class="jumbotron">
 
 
-        <div class="text-center">
-            <h2 clas>Consulta CNPJ</h2>
-            <div class="container">
+    <div class="text-center">
+        <h2 clas>Consulta CNPJ</h2>
+        <div class="container">
 
-                <div class="form-group">
+            <div class="form-group">
 
-                    @using (Html.BeginForm("Busca", "Home", FormMethod.Get))
-                    {
+                @using (Html.BeginForm("Busca", "Home", FormMethod.Get))
+                {
 
-                        <div class="input-group">
+                    <div class="input-group">
 
-                            <input type="text" class="form-control" placeholder="Digite o CNPJ" name="cnpj" >
-                            <div class="input-group-btn">
-                                <button class="btn btn-default" type="submit">Buscar  <i class="glyphicon glyphicon-search"></i></button>
-                            </div>
+                        <input type="text" class="form-control" placeholder="Digite o CNPJ" name="cnpj">
+                        <div class="input-group-btn">
+                            <button class="btn btn-default" type="submit">Buscar  <i class="glyphicon glyphicon-search"></i></button>
                         </div>
+                    </div>
 
-                    }
+                }
 
-                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <Script>
+            //caso o número esteja incorreto ou o usuário digite caracteres
+            if (@ViewData["alerta"] == 1)
+            {
+
+                    NumeroIncorreto();
+            }
+
+
+    </Script>
+    <Script>
+            if (@ViewData["verifica"] != "") {
+
+                if (@ViewData["verifica"] == '1') {
+
+                    salvo();
+                }
+              
+            } else {
+                errado();
+            }
+    </Script>
+    <br />
+    <br />
+    <div class="container">
+        @using (Html.BeginForm("salva", "Home", FormMethod.Get))
+        {
+            <div class="col-md-4">
+                <label> Nome da empresa</label>
+
+                <input type="text" disabled value="@ViewBag.nome" class="form-control">
+            </div>
+            <div class="col-md-4">
+                <label> Abertura</label>
+
+                <input type="text" disabled value="@ViewBag.abertura" class="form-control" />
             </div>
 
-        </div>
+            <div class="col-md-4">
+                <label> Situação</label>
 
-        @{
-            //caso o número esteja incorreto ou o usuário digite caracteres
-            if (ViewData["alerta"] != null)
-            {
-                <script>
-                    NumeroIncorreto();
-                </script>
-            }
+                <input type="text" disabled value="@ViewBag.situacao" class="form-control" />
+            </div>
+            <br />
+            <br />
+            <div class="col-md-4">
+                <label> Cidade </label>
 
+                <input type="text" disabled value="@ViewBag.cidade" class="form-control" />
+
+            </div>
+
+            <div class="col-md-4">
+                <label> Matriz</label>
+
+                <input type="text" disabled value="@ViewBag.bairro" class="form-control" />
+
+
+            </div>
+            <input type="hidden" name="cnpj1" value="@ViewBag.cnpj" />
+            <input type="hidden" name="fantasia" value="@ViewBag.nome" />
+
+            <div class="col-md-4">
+                <label> CEP</label>
+
+                <input type="text" disabled value="@ViewBag.cep" class="form-control" />
+
+            </div>
+            <br />
+            <br />
+            <div class="col-lg-10">
+
+
+                <input type="submit" class="btn btn-primary" value="Salvar consulta" />
+
+
+
+            </div>
         }
-        <br />
-        <br/>
-        <div class="container">
-            @using (Html.BeginForm("salva", "Home", FormMethod.Get))
-            {
-                <div class="col-md-4">
-                    <label> Nome da empresa</label>
-
-                    <input type="text" disabled value="@ViewBag.nome" class="form-control">
-                </div>
-                <div class="col-md-4">
-                    <label> Abertura</label>
-
-                    <input type="text" disabled value="@ViewBag.abertura" class="form-control" />
-                </div>
-
-                <div class="col-md-4">
-                    <label> Situação</label>
-
-                    <input type="text" disabled value="@ViewBag.situacao" class="form-control" />
-                </div>
-                <br />
-                <br />
-                <div class="col-md-4">
-                    <label> Cidade </label>
-
-                    <input type="text" disabled value="@ViewBag.cidade" class="form-control" />
-
-                </div>
-
-                <div class="col-md-4">
-                    <label> Matriz</label>
-
-                    <input type="text" disabled value="@ViewBag.bairro" class="form-control" />
-
-
-                </div>
-                <input type="hidden" name="cnpj1" value="@ViewBag.cnpj" />
-                <input type="hidden" name="fantasia" value="@ViewBag.nome" />
-
-                <div class="col-md-4">
-                    <label> CEP</label>
-
-                    <input type="text" disabled value="@ViewBag.cep" class="form-control" />
-
-                </div>
-                <br />
-                <br />
-                <div class="col-lg-10">
-
-
-                    <input type="submit" class="btn btn-primary" value="Salvar consulta" name="nada" />
-
-
-
-                </div>
-            }
-        </div>
+    </div>
 
 
 
@@ -144,6 +141,6 @@
 
 
 
-        </div>
+</div>
   
         </body>

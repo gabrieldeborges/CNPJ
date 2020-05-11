@@ -57,15 +57,15 @@ namespace Projeto_cnpj.Controllers
                 contexto1 con = new contexto1();
 
                 con.H.Add(atualConsulta);
-                con.SaveChanges();
+                con.SaveChanges(); 
 
-                ViewData["verifica"] = 1;
+                ViewData["verifica"] = '1';
 
                 return View("Index");
              }
              else
              {
-                ViewData["verifica"] = 0;
+                ViewData["verifica"] = '0';
                 return View("Index");
              }
          
@@ -125,7 +125,7 @@ namespace Projeto_cnpj.Controllers
             }
             else
             {
-                ViewData["alerta"] = true;
+                ViewData["alerta"] = 1;
                 return View("Index");
             }
         }
